@@ -30,6 +30,7 @@ class CanvasView: UIImageView {
         drawingImage?.draw(in: bounds)
         var touches = [UITouch]()
         
+        // coalesced
         if let coalescedTouches = event?.coalescedTouches(for: touch) {
             touches = coalescedTouches
         } else {
@@ -42,6 +43,7 @@ class CanvasView: UIImageView {
         
         drawingImage = UIGraphicsGetImageFromCurrentImageContext()
         
+        // predicted
         if let predictedTouches = event?.predictedTouches(for: touch) {
             for touch in predictedTouches {
                 drawStroke(context: context, touch: touch, isPredictedTouch: true)
